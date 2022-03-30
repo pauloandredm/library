@@ -10,3 +10,9 @@ class BooksViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.BooksSerializer
     queryset = models.Books.objects.all()
+
+class UsersViewSet(viewsets.ModelViewSet):
+    # permission_classes = (IsAuthenticated, )
+
+    serializer_class = serializers.UsersSerializer
+    queryset = models.Users.objects.all()

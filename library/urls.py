@@ -18,6 +18,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 from books.api import viewsets as booksviewsets
+from books.api import viewsets as usersviewsets
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -28,6 +29,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 #criando nosso objeto de rota
 route = routers.DefaultRouter()
 route.register(r'books', booksviewsets.BooksViewSet, basename="Books")
+route.register(r'users', usersviewsets.UsersViewSet, basename="Users")
 
 #defindo os endereços url
 urlpatterns = [
