@@ -11,6 +11,11 @@ class BooksViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.BooksSerializer
     queryset = models.Books.objects.all()
 
+# user ser salvo automaticamente
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    
+
 class UsersViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated, )
 

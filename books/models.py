@@ -2,6 +2,9 @@ from django.db import models
 from uuid import uuid4
 
 from django.contrib import auth
+from django.contrib.auth.models import User
+
+from django.conf import settings
 
 
 def upload_image_books(instance, filename):
@@ -24,6 +27,15 @@ class Books(models.Model):
     release_year = models.IntegerField()
     state = models.CharField(max_length=4, default="sem info", choices=STATE_CHOICES, blank=False, null=False)
     image = models.ImageField(upload_to=upload_image_books, blank=False, null=True)
+
+    # user = models.ForeignKey('Users', on_delete=models.CASCADE, null=True)
+    # ValueError: Cannot assign "<User: pauloadmendonca>": "Books.user" must be a "Users" instance.
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # from django.contrib.auth.models import User ---> função user do django
+
+    def __str__(self):
+        return self.title
 
     
 class Users(auth.models.User, auth.models.PermissionsMixin):

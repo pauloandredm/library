@@ -4,7 +4,9 @@ from books import models
 class BooksSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Books
-        fields = '__all__'
+        fields = ('id_book', 'title', 'author', 'release_year', 'state', 'image')
+        # fields = '__all__'
+        # extra_kwargs = {'user': {'read_only': True}}
 
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
